@@ -1,6 +1,6 @@
-<AbsoluteLayout orientation="vertical" height="100%" class="m-15" backgroundColor="lightgray">
+<AbsoluteLayout #ly orientation="vertical" height="100%" class="m-15" backgroundColor="lightgray">
     <Label ngClass="title" [text]="pokemon.name|uppercase" class="nameLabel"></Label>
-    <Image left="100" top="-50" class="image-poke"
+    <Image #img left="100" top="-50" class="image-poke"
         src='https://img.search.brave.com/BuRNttqVQvZD40SI4zgh1KMpCvt16WUfljZTpyROIRA/rs:fit:853:841:1/g:ce/aHR0cHM6Ly8yLmJw/LmJsb2dzcG90LmNv/bS8tNnBHSjJTclFZ/ZlEvVXpSS2t6SkFP/MUkvQUFBQUFBQUFB/UUEvV0JEQ0oyWHgy/SVkvczE2MDAvSG9u/b3JfQmFsbF8oSWx1/c3RyYWNpJUMzJUIz/bikucG5n'
         height="100" alt="image"></Image>
     <Image top="25" [src]="pokemon.picture" stretch="aspectFill"></Image>

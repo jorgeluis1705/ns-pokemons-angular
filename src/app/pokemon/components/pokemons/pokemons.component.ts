@@ -23,9 +23,7 @@ export class PokemonsComponent implements OnInit {
     this.page.actionBarHidden = true;
     this.pokemons = this.ac.snapshot.data.pokemons.results;
   }
-  ngOnInit(): void {
-    console.log(this.pokemons);
-  }
+  ngOnInit(): void {}
   onLoadMoreItemsRequested(args: LoadOnDemandListViewEventData) {
     const that = new WeakRef(this);
     const listView: RadListView = args.object;
