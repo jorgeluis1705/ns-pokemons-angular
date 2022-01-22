@@ -1,3 +1,4 @@
+import { PokemonsResolver } from "./shared/resolvers/pokemons.resolver";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "@nativescript/angular";
@@ -7,6 +8,9 @@ const routes: Routes = [
   {
     path: "",
     component: PokemonsComponent,
+    resolve: {
+      pokemons: PokemonsResolver,
+    },
   },
 ];
 

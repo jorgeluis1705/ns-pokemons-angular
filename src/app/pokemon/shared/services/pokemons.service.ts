@@ -21,9 +21,7 @@ export class PokemonsService {
     this.loading = val;
   }
 
-  constructor(private http: HttpClient) {
-    this.loadPokemons();
-  }
+  constructor(private http: HttpClient) {}
   getPokemonsRequest(url: string): Observable<PokemonPaginatedResponse> {
     return this.http.get<PokemonPaginatedResponse>(url).pipe(
       map((response) => {
@@ -36,6 +34,7 @@ export class PokemonsService {
             return { id, picture, name };
           }
         );
+        this.pokemonApiUrl = response.next;
 
         return {
           ...response,
@@ -44,18 +43,17 @@ export class PokemonsService {
       })
     );
   }
-  loadPokemons() {
+  loadPokemons(): Observable<PokemonPaginatedResponse> {
     this.setIsLoading = true;
-    const res = this.getPokemonsRequest(this.pokemonApi).subscribe({
-      next: (resp) => {
-        this.pokemonApiUrl = resp.next;
+    return this.getPokemonsRequest(this.pokemonApi).pipe(
+      map((res) => {
         this.setSimplePokemonList = [
           ...this.simplePokemonList,
-          ...(resp.results as any[]),
+          ...(res.results as any[]),
         ];
         this.setIsLoading = false;
-      },
-      error: (err) => console.log({ err }),
-    });
+        return res;
+      })
+    );
   }
 }

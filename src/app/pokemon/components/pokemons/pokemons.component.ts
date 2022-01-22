@@ -1,3 +1,4 @@
+import { ActivatedRoute } from "@angular/router";
 import {
   PokemonPaginatedResponse,
   SimplePokemon,
@@ -15,18 +16,33 @@ import {
   styleUrls: ["./pokemons.component.css"],
 })
 export class PokemonsComponent implements OnInit {
-  pokemons: SimplePokemon[] = [];
-  constructor(private pokemonsSerive: PokemonsService, private page: Page) {
+  pokemons: SimplePokemon[] | undefined;
+  constructor(
+    private page: Page,
+    private ac: ActivatedRoute,
+    private pokemonsSerive: PokemonsService
+  ) {
     this.page.actionBarHidden = true;
+    this.pokemons = this.ac.snapshot.data.pokemons.results;
   }
-  ngOnInit(): void {
-    console.log(this.pokemonsSerive.simplePokemonList);
-  }
+  ngOnInit(): void {}
   onLoadMoreItemsRequested(args: LoadOnDemandListViewEventData) {
     const that = new WeakRef(this);
     const listView: RadListView = args.object;
-    if (this.pokemonsSerive.setSimplePokemonList.length > 0) {
+    if (that.get().pokemons.length > 0) {
       setTimeout(function () {
+        that
+          .get()
+          .pokemonsSerive.getPokemonsRequest(
+            that.get().pokemonsSerive.pokemonApi
+          )
+          .subscribe({
+            next: (nextRes) => {
+              that.get().pokemons = that
+                .get()
+                .pokemons.concat(nextRes.results as any);
+            },
+          });
         listView.notifyLoadOnDemandFinished();
       }, 1500);
     } else {
