@@ -14,7 +14,7 @@ export class PokemonsService {
   get newPokemonsPage(): Observable<PokemonPaginatedResponse> {
     return this.http.get<PokemonPaginatedResponse>(this.pokemonApi).pipe();
   }
-  set newPokemonApiPaginated(url: string) {
+  set snewPokemonApiPaginated(url: string) {
     this.pokemonApi = url;
   }
 }
