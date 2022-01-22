@@ -38,6 +38,7 @@ export interface PokemonFull {
   stats: Stat[];
   types: Type[];
   weight: number;
+  picture?: string;
 }
 
 export interface Ability {

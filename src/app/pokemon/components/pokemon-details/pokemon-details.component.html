@@ -1,1 +1,15 @@
-<Label text="Detalles"></Label>
+<ScrollableView orientation="vertical">
+
+    <Label fontSize="25" [text]="pokemonFull.name">
+    </Label>
+    <Image [src]="pokemonFull.picture"></Image>
+</ScrollableView>
+<!--
+Properties
+NAME	        TYPE	        DESCRIPTION
+orientation	  Orientation	  Gets or sets direction in which the content can be scrolled. Supported values are "vertical" (default) and "horizontal".
+
+Events
+NAME	  DESCRIPTION
+scroll  Emitted when the component is scrolled
+-->

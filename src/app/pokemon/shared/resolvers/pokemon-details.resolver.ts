@@ -22,7 +22,7 @@ export class PokemonDetailsResolver
     state: RouterStateSnapshot
   ): Observable<PokemonFull> {
     return new Observable((obs) => {
-      this.pokemonsSerive.getOnePokemon(route.params.id).subscribe({
+      this.pokemonsSerive.getFullPokemon(route.params.id).subscribe({
         next: (e) => {
           obs.next(e);
         },

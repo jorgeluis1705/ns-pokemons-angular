@@ -55,9 +55,16 @@ export class PokemonsService {
       })
     );
   }
-  getOnePokemon(id: string): Observable<PokemonFull> {
-    return this.http.get<PokemonFull>(
-      `https://pokeapi.co/api/v2/pokemon/${id}`
-    );
+  getFullPokemon(id: string): Observable<PokemonFull> {
+    return this.http
+      .get<PokemonFull>(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .pipe(
+        map((res) => {
+          return {
+            ...res,
+            picture: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
+          };
+        })
+      );
   }
 }
