@@ -23,12 +23,25 @@ export class PokemonCardComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      let view: Image = this.img.nativeElement;
       let layout: AbsoluteLayout = this.ly.nativeElement;
-      console.log(view.color);
-      console.log(view.tintColor);
       layout.backgroundColor = new Color("#f1be3f");
       console.log("SIU");
     }, 4000);
+  }
+  onTap() {
+    console.log("XDs");
+    let layout: AbsoluteLayout = this.ly.nativeElement;
+    // Get reference to object we want to animate with code
+    layout
+      .animate({
+        duration: 60,
+        opacity: 0.5,
+      })
+      .then(() => {
+        // Reset animation
+        setTimeout(() => {
+          layout.opacity = 1;
+        }, 50);
+      });
   }
 }
