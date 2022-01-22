@@ -7,11 +7,12 @@ import { Page } from "@nativescript/core";
   styleUrls: ["./pokemons.component.css"],
 })
 export class PokemonsComponent implements OnInit {
+  pokemons: any[] = [];
   constructor(private pokemonsSerive: PokemonsService, private page: Page) {
     this.page.actionBarHidden = true;
 
     this.pokemonsSerive.newPokemonsPage.subscribe({
-      next: (res) => console.log(res),
+      next: (res) => (this.pokemons = res.results),
     });
   }
   ngOnInit(): void {}
