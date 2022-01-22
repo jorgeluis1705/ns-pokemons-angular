@@ -1,5 +1,4 @@
-    <RadListView [items]="requesApi?.results" loadOnDemandMode="Auto"
-        (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
+    <RadListView [items]="pokemons" loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
         <ng-template tkListItemTemplate let-item="item">
             <StackLayout orientation="vertical">
                 <Label class="nameLabel" [text]="item!.name"></Label>
