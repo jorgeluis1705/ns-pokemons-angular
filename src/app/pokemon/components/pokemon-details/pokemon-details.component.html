@@ -5,6 +5,8 @@
     <ScrollView orientation="vertical">
         <FlexboxLayout flexDirection="column" flexWrap="nowrap" alignContent="flex-start" class="p-15">
             <StackLayout>
+                <Label class="" fontSize="35" [text]="pokemonFull.name+' # ' +pokemonFull.id|uppercase"
+                    textWrap="true"></Label>
                 <Label class="" fontSize="50 " [text]="'typo'" textWrap="true"></Label>
                 <ListView height="150" [items]="pokemonFull.types">
                     <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
@@ -26,6 +28,20 @@
                     <Image height="200" width="150" [src]="pokemonFull.sprites.back_shiny"></Image>
                 </StackLayout>
             </ScrollView>
+            <Label fontSize="50" [text]="'Movimientos'" textWrap="true"></Label>
+
+            <ListView height="150" [items]="pokemonFull.moves">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                    <Label class="" fontSize="15" [text]=" item.move.name|uppercase" textWrap="true"></Label>
+                </ng-template>
+            </ListView>
+            <Label fontSize="50" [text]="'abilities'" textWrap="true"></Label>
+
+            <ListView height="150" [items]="pokemonFull.abilities">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                    <Label class="" fontSize="15" [text]=" item.ability.name|uppercase" textWrap="true"></Label>
+                </ng-template>
+            </ListView>
         </FlexboxLayout>
     </ScrollView>
 </StackLayout>
