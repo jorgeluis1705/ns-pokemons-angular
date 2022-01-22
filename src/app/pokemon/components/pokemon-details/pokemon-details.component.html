@@ -1,19 +1,32 @@
 <StackLayout>
-    <Image [src]="pokemonFull.picture"></Image>
+    <StackLayout orientation="horizontal" backgroundColor="lightgray">
+        <Image [src]="pokemonFull.picture"></Image>
+    </StackLayout>
     <ScrollView orientation="vertical">
-        <GridLayout rows="200 200 200 200 200 200 200 200 200 200">
+        <FlexboxLayout flexDirection="column" flexWrap="nowrap" alignContent="flex-start" class="p-15">
+            <StackLayout>
+                <Label class="" fontSize="50 " [text]="'typo'" textWrap="true"></Label>
+                <ListView height="150" [items]="pokemonFull.types">
+                    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                        <Label class="" fontSize="30" [text]=" item.type.name|uppercase" textWrap="true"></Label>
+                    </ng-template>
+                </ListView>
+                <Label fontSize="50" [text]="'Peso'" textWrap="true"></Label>
+                <Label fontSize="30" [text]="pokemonFull.weight+'KG' " textWrap="true"></Label>
+            </StackLayout>
+            <Label fontSize="50" [text]="'Spirits'" textWrap="true"></Label>
+            <ScrollView orientation="horizontal">
+                <StackLayout orientation="horizontal">
+                    <Image height="200" width="150" [src]="pokemonFull.sprites.front_default"></Image>
 
-            <Label class="m-10" row="0" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="1" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="2" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="3" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="4" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="5" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="6" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="7" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="8" text="Some text content follows here..." textWrap="true"></Label>
-            <Label class="m-10" row="9" text="Some text content follows here..." textWrap="true"></Label>
-        </GridLayout>
+                    <Image height="200" width="150" [src]="pokemonFull.sprites.back_default"></Image>
+
+                    <Image height="200" width="150" [src]="pokemonFull.sprites.front_shiny"></Image>
+
+                    <Image height="200" width="150" [src]="pokemonFull.sprites.back_shiny"></Image>
+                </StackLayout>
+            </ScrollView>
+        </FlexboxLayout>
     </ScrollView>
 </StackLayout>
 <!--
