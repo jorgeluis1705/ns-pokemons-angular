@@ -1,10 +1,10 @@
 <GridLayout tkExampleTitle tkToggleNavButton>
-    <RadListView [items]="pokemons">
+    <RadListView [items]="pokemons" loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
+        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="250" dynamicItemSize="false"
+            spanCount="2"></ListViewGridLayout>
         <ng-template tkListItemTemplate let-item="item">
-            <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="item.name"></Label>
-                <Image [src]="item.picture" stretch="aspectFill" [tintColor]="item.color">
-                </Image>
+            <StackLayout orientation="vertical" height="100%" class="m-15" backgroundColor="lightgray">
+                <Image [src]="item?.picture" stretch="aspectFill"></Image>
             </StackLayout>
         </ng-template>
     </RadListView>
