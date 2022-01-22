@@ -24,21 +24,23 @@ export class PokemonsService {
   constructor(private http: HttpClient) {
     this.loadPokemons();
   }
-  getPokemonsRequest(url: string): PokemonPaginatedResponse {
-    let newRequestApi: PokemonPaginatedResponse | undefined;
-    this.http.get<PokemonPaginatedResponse>(url).subscribe({
-      next: (resp) => (newRequestApi = resp),
-      error: (err) => console.log({ err }),
-    });
-    return newRequestApi!;
+  getPokemonsRequest(url: string): Observable<PokemonPaginatedResponse> {
+    return this.http.get<PokemonPaginatedResponse>(url);
   }
   loadPokemons() {
     this.setIsLoading = true;
-    const resp = this.getPokemonsRequest(this.pokemonApi);
-    this.pokemonApiUrl = resp?.next;
-    this.mapPokemonList(resp?.results);
+    const res = this.getPokemonsRequest(this.pokemonApi);
+    res.subscribe({
+      next: (resp) => {
+        this.pokemonApiUrl = resp.next;
+        this.mapPokemonList(resp.results);
+      },
+      error: (err) => console.log({ err }),
+    });
+
+    console.log("SIU");
   }
-  mapPokemonList = (pokemonList: Result[]) => {
+  mapPokemonList(pokemonList: Result[]) {
     const newPokemonList: SimplePokemon[] = pokemonList?.map(
       ({ name, url }) => {
         const urlParts = url.split("/");
@@ -51,5 +53,5 @@ export class PokemonsService {
 
     this.setSimplePokemonList = [...this.simplePokemonList, ...newPokemonList];
     this.setIsLoading = false;
-  };
+  }
 }
