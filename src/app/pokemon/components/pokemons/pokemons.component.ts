@@ -15,10 +15,6 @@ export class PokemonsComponent implements OnInit {
   requesApi: PokemonPaginatedResponse | undefined;
   constructor(private pokemonsSerive: PokemonsService, private page: Page) {
     this.page.actionBarHidden = true;
-
-    this.pokemonsSerive.newPokemonsPage.subscribe({
-      next: (res) => (this.requesApi = res),
-    });
   }
   ngOnInit(): void {
     console.log(this.requesApi);
