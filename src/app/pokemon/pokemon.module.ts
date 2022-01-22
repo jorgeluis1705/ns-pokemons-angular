@@ -9,9 +9,10 @@ import {
   NativeScriptCommonModule,
   NativeScriptHttpClientModule,
 } from "@nativescript/angular";
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 
 @NgModule({
-  declarations: [PokemonsComponent, PokemonDetailsComponent],
+  declarations: [PokemonsComponent, PokemonDetailsComponent, PokemonCardComponent],
 
   imports: [
     CommonModule,

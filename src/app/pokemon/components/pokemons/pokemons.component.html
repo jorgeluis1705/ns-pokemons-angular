@@ -3,9 +3,8 @@
         <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="250" dynamicItemSize="false"
             spanCount="2"></ListViewGridLayout>
         <ng-template tkListItemTemplate let-item="item">
-            <StackLayout orientation="vertical" height="100%" class="m-15" backgroundColor="lightgray">
-                <Image [src]="item?.picture" stretch="aspectFill"></Image>
-            </StackLayout>
+            <ns-pokemon-card [item]="item"> </ns-pokemon-card>
+
         </ng-template>
     </RadListView>
 </GridLayout>

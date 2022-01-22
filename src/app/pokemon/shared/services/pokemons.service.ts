@@ -1,4 +1,4 @@
-import { Result, SimplePokemon } from "./../interfaces/pokemonInterfaces";
+import { SimplePokemon } from "./../interfaces/pokemonInterfaces";
 import { PokemonPaginatedResponse } from "../interfaces/pokemonInterfaces";
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
