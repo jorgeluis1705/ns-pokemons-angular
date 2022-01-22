@@ -1,4 +1,4 @@
-import { SimplePokemon } from "./../interfaces/pokemonInterfaces";
+import { PokemonFull, SimplePokemon } from "./../interfaces/pokemonInterfaces";
 import { PokemonPaginatedResponse } from "../interfaces/pokemonInterfaces";
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
@@ -53,6 +53,11 @@ export class PokemonsService {
         this.setIsLoading = false;
         return res;
       })
+    );
+  }
+  getOnePokemon(id: string): Observable<PokemonFull> {
+    return this.http.get<PokemonFull>(
+      `https://pokeapi.co/api/v2/pokemon/${id}`
     );
   }
 }
