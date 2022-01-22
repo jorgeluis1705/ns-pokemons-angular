@@ -3,4 +3,6 @@
     background-position: center;
     background-size: cover;
     background-color: transparent;
+    min-height: 500;
+    max-height: 500;
 }
