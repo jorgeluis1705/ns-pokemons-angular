@@ -1,8 +1,11 @@
-    <RadListView [items]="pokemons" loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
+<GridLayout tkExampleTitle tkToggleNavButton>
+    <RadListView [items]="pokemons">
         <ng-template tkListItemTemplate let-item="item">
             <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="item!.name"></Label>
-                <Label class="descriptionLabel" [text]="item!.name"></Label>
+                <Label class="nameLabel" [text]="item.name"></Label>
+                <Image [src]="item.picture" stretch="aspectFill" [tintColor]="item.color">
+                </Image>
             </StackLayout>
         </ng-template>
     </RadListView>
+</GridLayout>

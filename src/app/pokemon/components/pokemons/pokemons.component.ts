@@ -1,8 +1,5 @@
 import { ActivatedRoute } from "@angular/router";
-import {
-  PokemonPaginatedResponse,
-  SimplePokemon,
-} from "./../../shared/interfaces/pokemonInterfaces";
+import { SimplePokemon } from "./../../shared/interfaces/pokemonInterfaces";
 import { PokemonsService } from "./../../shared/services/pokemons.service";
 import { Component, OnInit } from "@angular/core";
 import { Page } from "@nativescript/core";
