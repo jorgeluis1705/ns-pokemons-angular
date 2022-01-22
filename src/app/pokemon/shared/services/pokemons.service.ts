@@ -1,7 +1,7 @@
 import { Result, SimplePokemon } from "./../interfaces/pokemonInterfaces";
 import { PokemonPaginatedResponse } from "../interfaces/pokemonInterfaces";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -25,33 +25,37 @@ export class PokemonsService {
     this.loadPokemons();
   }
   getPokemonsRequest(url: string): Observable<PokemonPaginatedResponse> {
-    return this.http.get<PokemonPaginatedResponse>(url);
+    return this.http.get<PokemonPaginatedResponse>(url).pipe(
+      map((response) => {
+        const newPokemonList: SimplePokemon[] = response.results.map(
+          ({ name, url }) => {
+            const urlParts = url.split("/");
+            const id = urlParts[urlParts.length - 2];
+            const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+            return { id, picture, name };
+          }
+        );
+
+        return {
+          ...response,
+          results: newPokemonList as any[],
+        };
+      })
+    );
   }
   loadPokemons() {
     this.setIsLoading = true;
-    const res = this.getPokemonsRequest(this.pokemonApi);
-    res.subscribe({
+    const res = this.getPokemonsRequest(this.pokemonApi).subscribe({
       next: (resp) => {
         this.pokemonApiUrl = resp.next;
-        this.mapPokemonList(resp.results);
+        this.setSimplePokemonList = [
+          ...this.simplePokemonList,
+          ...(resp.results as any[]),
+        ];
+        this.setIsLoading = false;
       },
       error: (err) => console.log({ err }),
     });
-
-    console.log("SIU");
-  }
-  mapPokemonList(pokemonList: Result[]) {
-    const newPokemonList: SimplePokemon[] = pokemonList?.map(
-      ({ name, url }) => {
-        const urlParts = url.split("/");
-        const id = urlParts[urlParts.length - 2];
-        const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-
-        return { id, picture, name };
-      }
-    );
-
-    this.setSimplePokemonList = [...this.simplePokemonList, ...newPokemonList];
-    this.setIsLoading = false;
   }
 }
