@@ -7,6 +7,7 @@ import {
   Color,
   AbsoluteLayout,
 } from "@nativescript/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ns-pokemon-card",
@@ -19,7 +20,7 @@ export class PokemonCardComponent implements OnInit {
   @ViewChild("img") img: ElementRef<Image>;
   @ViewChild("ly") ly: ElementRef<AbsoluteLayout>;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -29,7 +30,6 @@ export class PokemonCardComponent implements OnInit {
     }, 4000);
   }
   onTap() {
-    console.log("XDs");
     let layout: AbsoluteLayout = this.ly.nativeElement;
     // Get reference to object we want to animate with code
     layout
@@ -43,5 +43,6 @@ export class PokemonCardComponent implements OnInit {
           layout.opacity = 1;
         }, 50);
       });
+    this.router.navigate(["pokemons/", this.pokemon.id]);
   }
 }

@@ -13,15 +13,14 @@ const routes: Routes = [
     resolve: {
       pokemons: PokemonsResolver,
     },
-    children: [
-      {
-        path: ":id",
-        component: PokemonDetailsComponent,
-        resolve: {
-          pokemon: PokemonDetailsResolver,
-        },
-      },
-    ],
+    children: [],
+  },
+  {
+    path: ":id",
+    component: PokemonDetailsComponent,
+    resolve: {
+      pokemon: PokemonDetailsResolver,
+    },
   },
 ];
 
