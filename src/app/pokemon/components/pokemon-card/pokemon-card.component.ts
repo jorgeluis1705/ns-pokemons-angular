@@ -27,7 +27,6 @@ export class PokemonCardComponent implements OnInit {
       let layout: AbsoluteLayout = this.ly.nativeElement;
       layout.backgroundColor = new Color("#f1be3f");
       this.load = this.img.nativeElement.isLoaded;
-      console.log(this.img.nativeElement.isLoaded);
     }, 2000);
   }
   onTap() {
