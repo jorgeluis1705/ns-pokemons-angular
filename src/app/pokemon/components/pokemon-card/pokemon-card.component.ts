@@ -19,15 +19,16 @@ export class PokemonCardComponent implements OnInit {
   pokebolaBlancA = "/assets/pokebola.png";
   @ViewChild("img") img: ElementRef<Image>;
   @ViewChild("ly") ly: ElementRef<AbsoluteLayout>;
-
+  load: boolean = false;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     setTimeout(() => {
       let layout: AbsoluteLayout = this.ly.nativeElement;
       layout.backgroundColor = new Color("#f1be3f");
-      console.log("SIU");
-    }, 4000);
+      this.load = this.img.nativeElement.isLoaded;
+      console.log(this.img.nativeElement.isLoaded);
+    }, 2000);
   }
   onTap() {
     let layout: AbsoluteLayout = this.ly.nativeElement;
